@@ -10,7 +10,8 @@
     "lint": "biome check --write --diagnostic-level=warn",
     "prepare": "husky",
     "clean": "rm -rf node_modules dist generated",
-    "type": "tsc --noEmit"
+    "type": "tsc --noEmit",
+    "minify": "if [ -f src/scripts/minify-jsons.sh ]; then src/scripts/minify-jsons.sh; fi"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

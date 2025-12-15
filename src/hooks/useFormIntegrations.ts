@@ -43,8 +43,8 @@ export type TFormIntegrationsContext = {
     processors?: TProcessorsMap;
     components?: Record<string, LazyExoticComponent<FC>>;
     renderers?: {
-      stepper?: LazyExoticComponent<FC<TStepperRendererProps>>;
-      stepTitle?: LazyExoticComponent<FC<TStepperTitleRendererProps>>;
+      stepper?: LazyExoticComponent<FC<TStepperRendererProps>> | FC<TStepperRendererProps>;
+      stepTitle?: LazyExoticComponent<FC<TStepperTitleRendererProps>> | FC<TStepperTitleRendererProps>;
     };
   };
 
