@@ -46,11 +46,9 @@ const RadioBinaryComponent: FC<TRadioBinaryComponentProps> = ({ schema, path }) 
             </FormLabel>
             <RadioGroup
               name={effectivePropertyPath}
-              onChange={(_, value) => {
-                field.onChange(value === 'true');
-              }}
+              onChange={(_, value) => field.onChange(value === 'true')}
               row
-              value={field.value}
+              value={String(field.value)}
             >
               {optionItems.map(option => {
                 return (
