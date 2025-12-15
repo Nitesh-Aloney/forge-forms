@@ -1,6 +1,6 @@
 import useSWRImmutable from 'swr/immutable';
+import type { TFormElement } from '@/schemas/form-entites/form';
 import { get } from '@/utils/api/fetchers';
-import type { TFormElement } from '../schemas/form-entites/form';
 
 export const useGetFormSchema = (url?: string) => {
   const { data, error, isLoading } = useSWRImmutable<TFormElement>(url, get);

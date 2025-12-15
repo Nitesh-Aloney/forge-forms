@@ -1,8 +1,8 @@
 import { dayJS } from '@/integrations/dayjs';
+import { ConditionRuleSchema, type TCondition, type TConditionRule } from '@/schemas/form-entites/condition';
+import type { TOperator } from '@/schemas/form-entites/operator';
+import type { TFormValue } from '@/types';
 import { isISODateFormat } from '@/utils/date';
-import { ConditionRuleSchema, type TCondition, type TConditionRule } from '../schemas/form-entites/condition';
-import type { TOperator } from '../schemas/form-entites/operator';
-import type { TFormValue } from '../types';
 import { extractFieldReferencesFromArray } from './index';
 
 /**

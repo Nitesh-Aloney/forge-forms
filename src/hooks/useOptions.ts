@@ -3,9 +3,9 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import useSWR from 'swr';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 import { OptionItemSchema, type TOptionItem, type TOptions } from '@/schemas/form-entites/option';
+import type { TOptionProcessorFunctionSignature } from '@/types';
+import { extractFieldReferencePaths } from '@/utils';
 import { get } from '@/utils/api/fetchers';
-import type { TOptionProcessorFunctionSignature } from '../types';
-import { extractFieldReferencePaths } from '../utils';
 import { useFieldResolvers } from './useFieldResolvers';
 import { useProcessors } from './useFormIntegrations';
 

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useWatch } from 'react-hook-form';
-import type { TElementBase } from '../schemas/form-entites/element-base';
+import type { TElementBase } from '@/schemas/form-entites/element-base';
 import useConditions from './useConditions';
 import { useFieldResolvers } from './useFieldResolvers';
 

@@ -1,7 +1,7 @@
-import type { NFormifyWebErrorProps } from './ConfFormsWebError';
+import type { TConfFormsWebErrorProps } from './ConfFormsWebError';
 import ConfFormsWebError from './ConfFormsWebError';
 
-export type ResponseErrorProps = NFormifyWebErrorProps & { status?: number };
+export type ResponseErrorProps = TConfFormsWebErrorProps & { status?: number };
 
 class ResponseError extends ConfFormsWebError {
   status?: number;

@@ -4,7 +4,7 @@ export type ErrorDetails = {
   description: string;
 };
 
-export type NFormifyWebErrorProps = {
+export type TConfFormsWebErrorProps = {
   message?: string;
   code?: string;
   errors?: ErrorDetails[];
@@ -14,9 +14,9 @@ export type NFormifyWebErrorProps = {
 class ConfFormsWebError extends Error {
   code?: string;
   errors?: ErrorDetails[];
-  retry?: NFormifyWebErrorProps['retry'];
+  retry?: TConfFormsWebErrorProps['retry'];
 
-  constructor({ message, code, errors, retry }: NFormifyWebErrorProps) {
+  constructor({ message, code, errors, retry }: TConfFormsWebErrorProps) {
     super(message);
 
     this.code = code || 'UNKNOWN';

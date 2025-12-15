@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { OBJECT_LIST_CURR_ENTRY, SELF_REFERENCE } from '../schemas/form-entites/special-keywords';
-import type { TFormValue } from '../types';
-import { constructPropertyPath, extractFieldReference } from '../utils';
+import { OBJECT_LIST_CURR_ENTRY, SELF_REFERENCE } from '@/schemas/form-entites/special-keywords';
+import type { TFormValue } from '@/types';
+import { constructPropertyPath, extractFieldReference } from '@/utils';
 import { useObjectListContext } from './useObjectListContext';
 
 export function useFieldResolvers() {

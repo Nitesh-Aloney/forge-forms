@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import type { TCustomFunctionSignature } from '../types';
+import type { TCustomFunctionSignature } from '@/types';
 import { usePlugins } from './useFormIntegrations';
 
 export function useCustomFunctions() {

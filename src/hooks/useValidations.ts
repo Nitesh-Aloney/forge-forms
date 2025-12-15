@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import type { FieldValues } from 'react-hook-form';
-import type { TRuleValidation, TValidationSchema } from '../schemas/form-entites/validation';
-import type { TValidationFunctionSignature } from '../types';
-import { dateRange, dateTimeRange, max, maxLen, min, minLen, noOfOptions, pattern } from '../utils/validation';
+import type { TRuleValidation, TValidationSchema } from '@/schemas/form-entites/validation';
+import type { TValidationFunctionSignature } from '@/types';
+import { dateRange, dateTimeRange, max, maxLen, min, minLen, noOfOptions, pattern } from '@/utils/validation';
 import useConditions from './useConditions';
 import { useCustomFunctions } from './useCustomFunctions';
 import { useFormField } from './useFormField';

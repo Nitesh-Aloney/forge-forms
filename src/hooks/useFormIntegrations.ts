@@ -2,10 +2,10 @@ import { createContext, type FC, type LazyExoticComponent, type ReactNode, use, 
 import type { FieldValues } from 'react-hook-form';
 import ConfFormsWebError from '@/schemas/errors/ConfFormsWebError';
 import type { TErrorDetails } from '@/schemas/errors/error-response';
-import type { TFormElement } from '../schemas/form-entites/form';
-import type { TFileUploadField } from '../schemas/form-entites/form-fields';
-import type { TLazySectionProcessorPrefix } from '../schemas/form-entites/layout';
-import type { TOptionsProcessorPrefix } from '../schemas/form-entites/option';
+import type { TFormElement } from '@/schemas/form-entites/form';
+import type { TFileUploadField } from '@/schemas/form-entites/form-fields';
+import type { TLazySectionProcessorPrefix } from '@/schemas/form-entites/layout';
+import type { TOptionsProcessorPrefix } from '@/schemas/form-entites/option';
 import type {
   FileIDFileNameTuple,
   TCustomFunctionSignature,
@@ -18,7 +18,7 @@ import type {
   TOptionProcessorFunctionSignature,
   TStepperRendererProps,
   TStepperTitleRendererProps,
-} from '../types';
+} from '@/types';
 import type { useFieldMapping } from './useFieldMapping';
 import type { useStepControls } from './useStepControls';
 

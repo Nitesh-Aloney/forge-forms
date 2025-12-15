@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import type { ControllerRenderProps, FieldValues } from 'react-hook-form';
-import type { FileIDFileNameTuple } from '../types';
+import type { FileIDFileNameTuple } from '@/types';
 import { usePlugins } from './useFormIntegrations';
 
 interface UseFileUploadState {

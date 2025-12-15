@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { TFormElement } from '../schemas/form-entites/form';
-import type { TStepperItem } from '../types';
+import type { TFormElement } from '@/schemas/form-entites/form';
+import type { TStepperItem } from '@/types';
 
 export function useStepControls(formSchema: TFormElement, initStep = 0) {
   const { steps, multistep = false, review } = formSchema;

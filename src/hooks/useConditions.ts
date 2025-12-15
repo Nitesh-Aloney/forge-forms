@@ -8,9 +8,9 @@ import {
   type TConditionFunction,
   type TConditionRule,
   type TConditions,
-} from '../schemas/form-entites/condition';
-import type { TFormValue } from '../types';
-import { evaluateOperation, extractFieldReferencesFromCondition } from '../utils/condition';
+} from '@/schemas/form-entites/condition';
+import type { TFormValue } from '@/types';
+import { evaluateOperation, extractFieldReferencesFromCondition } from '@/utils/condition';
 import { useCustomFunctions } from './useCustomFunctions';
 import { useFieldResolvers } from './useFieldResolvers';
 

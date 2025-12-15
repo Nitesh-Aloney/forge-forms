@@ -1,4 +1,4 @@
-import type { TFileSize } from '../schemas/form-entites/form-fields';
+import type { TFileSize } from '@/schemas/form-entites/form-fields';
 
 /**
  * Regular expression to match field reference syntax.

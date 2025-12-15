@@ -3,9 +3,9 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import useSWRImmutable from 'swr/immutable';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 import type { TLazySectionElement, TStaticSectionElement } from '@/schemas/form-entites/layout';
+import type { TLazySectionProcessorFunctionSignature } from '@/types';
+import { extractFieldReferencePaths } from '@/utils';
 import { get } from '@/utils/api/fetchers';
-import type { TLazySectionProcessorFunctionSignature } from '../types';
-import { extractFieldReferencePaths } from '../utils';
 import { useFieldResolvers } from './useFieldResolvers';
 import { useProcessors } from './useFormIntegrations';
 

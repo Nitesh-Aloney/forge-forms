@@ -1,6 +1,6 @@
-import { FIELD_REFERENCE_REGEX } from '../constants';
-import type { TFieldToLocationMapping } from '../hooks/useFieldMapping';
-import { SELF_REFERENCE } from '../schemas/form-entites/special-keywords';
+import { FIELD_REFERENCE_REGEX } from '@/constants';
+import type { TFieldToLocationMapping } from '@/hooks/useFieldMapping';
+import { SELF_REFERENCE } from '@/schemas/form-entites/special-keywords';
 
 /**
  * Constructs a property path by combining a base path with a schema path.
