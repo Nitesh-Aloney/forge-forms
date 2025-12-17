@@ -1,1 +1,893 @@
-{"id":"20f1e5f5-a539-407f-badb-dd74eb008630","multistep":true,"review":{"declarations":[{"id":"291812cc-6f1e-4206-a684-ae32d3ef2cf6","label":"I declare that all information provided in this employee onboarding form is true and accurate to the best of my knowledge","propertyPath":"employeeDeclaration","required":true,"type":"declaration"}],"enable":true,"type":"review"},"steps":[{"id":"f13ec013-f436-4040-9802-5053d49ff83e","layoutType":"step","sections":[{"collapsable":true,"id":"d30f0495-afd5-47bd-82a9-f62231d2b348","items":[{"id":"4a8d144f-db65-4f3d-b5b1-57069e5b1dfa","items":[{"fieldType":"input","id":"e3972663-a69c-43f3-8365-494a9efc9443","inputType":"text","propertyPath":"firstName","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"First Name","type":"field","validations":[{"message":"First name should be at most 40 characters","type":"maxLen","val":40}]},{"fieldType":"input","id":"9bd6ba7f-8c56-4e72-97ef-393e728c1cf9","inputType":"text","propertyPath":"middleName","title":"Middle Name","type":"field","validations":[{"message":"Middle name should be at most 40 characters","type":"maxLen","val":40}]},{"fieldType":"input","id":"0f000de9-30a1-4755-b898-838e7c83bb9a","inputType":"text","propertyPath":"lastName","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Last Name","type":"field","validations":[{"message":"Last name should be at most 40 characters","type":"maxLen","val":40}]}],"layoutType":"row","type":"layout"},{"id":"86a3d115-3d24-4263-9482-de5e74dc139a","items":[{"fieldType":"input","id":"701c2507-21f3-4c50-8f01-9c63a4fc5e7a","inputType":"email","propertyPath":"email","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Personal Email Address","type":"field","validations":[{"message":"Please enter a valid email address","type":"pattern","val":"^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"},{"message":"Email should be at most 60 characters","type":"maxLen","val":60}]},{"fieldType":"date","id":"000b840f-d8aa-4e45-b6ff-9d4557cea46c","max":{"init":"__today__","offset":{"yrs":-18}},"propertyPath":"dateOfBirth","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Date of Birth","type":"field","validations":[{"max":{"init":"__today__","offset":{"yrs":-18}},"message":"Should be atleast 18 years old","min":"1800-01-01","type":"dateRange"}]}],"layoutType":"row","type":"layout"},{"id":"3ba99a10-ca7e-4f5c-9a57-ca8bc2f18c7d","items":[{"fieldType":"select","id":"bdc372bc-62d9-4113-bdb4-7969a9b0150d","options":{"processor":"options_extractCountryNames","type":"dynamic","url":"/config/country-metadata.json"},"propertyPath":"nationality","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Nationality","type":"field"},{"fieldType":"select","id":"8daa3057-dfaa-4d34-88b3-47fb865af507","options":{"processor":"options_extractCountryNames","type":"dynamic","url":"/config/country-metadata.json"},"propertyPath":"birthCountry","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Birth Country","type":"field"}],"layoutType":"row","type":"layout"},{"id":"c73f5e4a-e741-413c-97e1-9ceee096c167","items":[{"fieldType":"select","id":"18af16f3-d909-4e0e-9216-d749a4a48e85","options":{"processor":"options_extractMobileCountryCodes","type":"dynamic","url":"/config/country-metadata.json"},"propertyPath":"mobileCountryCode","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Country Code","type":"field"},{"fieldType":"input","id":"44a5e116-500f-4aad-94f9-794819b5985d","inputType":"tel","propertyPath":"mobile","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Personal Mobile Number","type":"field","validations":[{"message":"Please enter a valid mobile number (6-15 digits)","type":"pattern","val":"^[0-9]{6,15}$"}]}],"layoutType":"row","type":"layout","widths":[30,70]}],"layoutType":"section","subtitle":"Your personal details for HR records and company directory","title":"Personal Information","type":"layout"},{"id":"3a57975e-60cb-4c2a-af7c-d14540a7171e","items":[{"id":"8542f966-e7fd-49e6-9e36-629a44b9086b","items":[{"id":"a5bf9243-7afa-492f-8746-f68810f80cc2","items":[{"fieldType":"select","id":"5b039602-97b5-4681-befb-c4cec18a6ef3","options":{"processor":"options_extractCountryNames","type":"dynamic","url":"/config/country-metadata.json"},"propertyPath":"taxCountry","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Tax Country","type":"field"},{"fieldType":"input","id":"7d9e27cd-96d6-48bc-8bf4-4761cbf438af","inputType":"text","propertyPath":"taxNumber","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Tax Number","type":"field","validations":[{"message":"Tax number should be at most 64 characters","type":"maxLen","val":64}]}],"layoutType":"row","type":"layout"}],"min":1,"propertyPath":"taxDetails","title":"Tax Details","type":"object-list"}],"layoutType":"section","subtitle":"Provide your tax information for payroll and compliance purposes","title":"Tax & Compliance Information","type":"layout"},{"id":"17894ca3-9302-4f84-adf9-e9f8a986b49e","items":[{"id":"08d579e7-3497-4e3d-89ed-18af3bedb817","items":[{"fieldType":"input","id":"278ee499-dc91-4456-96f3-ecdeea3a5f41","inputType":"text","propertyPath":"homeAddress.addressLine1","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Address Line 1","type":"field","validations":[{"message":"Address line 1 should be at most 100 characters","type":"maxLen","val":100}]},{"fieldType":"input","id":"243996c5-439c-4dfc-a36e-f7f316875354","inputType":"text","propertyPath":"homeAddress.addressLine2","title":"Address Line 2","type":"field","validations":[{"message":"Address line 2 should be at most 100 characters","type":"maxLen","val":100}]},{"fieldType":"select","id":"aae44bbe-5270-4fb1-9258-f6815c86ca58","options":{"processor":"options_extractCountryNames","type":"dynamic","url":"/config/country-metadata.json"},"propertyPath":"homeAddress.country","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Country","type":"field"}],"layoutType":"row","type":"layout"},{"id":"233ebece-bebc-4126-b429-996b03dda2b4","items":[{"fieldType":"input","id":"abbe1554-8d50-42a4-9f46-508e926e0513","inputType":"text","propertyPath":"homeAddress.city","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"City","type":"field","validations":[{"message":"City should be at most 50 characters","type":"maxLen","val":50}]},{"fieldType":"input","inputType":"text","id":"9604d5cb-a56f-47ee-9d7e-3a52df9a91a1","propertyPath":"homeAddress.state","disable":{"conditions":[["{{homeAddress.country}}","","EMP"]],"type":"AND"},"required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"State/Province","type":"field"},{"fieldType":"input","id":"1a1bd80d-df16-4b24-8156-ff994fd5fe38","inputType":"text","propertyPath":"homeAddress.postcode","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Postal Code","type":"field","validations":[{"message":"Postal code should be atmost 10 character and alphanumeric","type":"pattern","val":"^[A-Za-z0-9 ]{0,10}$"}]}],"layoutType":"row","type":"layout"}],"layoutType":"section","title":"Home Address","type":"layout"},{"id":"d79b513c-4b38-475c-81d1-37ca1d31aac4","items":[{"id":"bfbccb5c-e73c-4b14-a6a1-99e7313dbe46","items":[{"fieldType":"radio-binary","id":"0b4c9fd8-ba1f-4f1d-8cb4-cc95d7d83817","propertyPath":"isPep","title":"Do you have any political affiliations or positions that should be disclosed?","type":"field","required":{"conditions":[["A","A","EQ"]],"type":"AND"}}],"layoutType":"row","type":"layout"}],"layoutType":"section","subtitle":"Background information required for employment compliance","title":"Background Check Information","type":"layout"}],"subtitle":"Please provide your personal information and contact details for your employee profile.","title":"Employee Information","type":"layout"},{"id":"508e36a9-f3a0-496d-8288-19a85b93c001","layoutType":"step","sections":[{"id":"12b5d793-9412-44b9-bb23-dcf4d76476a0","items":[{"id":"f62a78ea-7de9-47e1-ab3d-032e7bdbbf4d","items":[{"fieldType":"select","id":"8b0b2e50-da81-46a9-9c19-741d66657c1d","options":{"processor":"options_extractCountryNames","type":"dynamic","url":"/config/country-metadata.json"},"propertyPath":"payrollBankDetails.bankCountry","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Bank Country","type":"field"},{"fieldType":"select","id":"ff8ee05d-32d3-448a-ad67-92b91e3855b7","options":{"processor":"options_extractCurrencyCodes","type":"dynamic","url":"/config/country-metadata.json"},"propertyPath":"payrollBankDetails.currency","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Bank Currency","type":"field"}],"layoutType":"row","type":"layout"}],"layoutType":"section","title":"Salary Payment Details","type":"layout"},{"type":"layout","layoutType":"section","sectionType":"lazy","id":"9dhjfd25bf-9a51-48cc-b7cd-1c5c048e2126","title":"Additional Payroll Information","subtitle":"Provide additional bank account details for salary payments.","url":"{{__context__.bankDetailsSectionSchemaUrl}}","hide":{"conditions":[["{{payrollBankDetails.currency}}","","EMP"],["{{payrollBankDetails.bankCountry}}","","EMP"]],"type":"OR"}}],"subtitle":"Provide your banking details for salary payments and direct deposits","title":"Payment & Banking Information","type":"layout"},{"id":"b6c8ecfa-9aa1-4614-b186-1e15b9a66796","layoutType":"step","sections":[{"id":"9f6baac6-eea2-4a6c-8231-fb8a4f59582d","items":[{"id":"3e76717c-f5f3-4510-a4a2-cf308d74c83f","items":[{"fieldType":"select","helperText":"Select your preferred work arrangements","id":"0bc642f8-67ff-4382-bb84-d00e36a5a3c4","multiple":true,"options":{"type":"static","items":[{"label":"Remote Work","value":"REMOTE"},{"label":"Hybrid Work","value":"HYBRID"},{"label":"On-site Work","value":"ONSITE"},{"label":"Flexible Hours","value":"FLEXIBLE"},{"label":"Standard Hours","value":"STANDARD"}]},"propertyPath":"workPreferences.arrangements","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Preferred Work Arrangements","type":"field"}],"layoutType":"row","type":"layout"},{"id":"9afb1fef-4e9b-4923-8cdb-cb9951177cdc","items":[{"fieldType":"input","helperText":"Please provide additional details about your work preferences or special requirements","id":"b978c191-f122-4f93-8662-9313d0e0a8dd","inputType":"text","multiline":3,"propertyPath":"workPreferences.additionalNotes","title":"Additional Work Preference Notes","type":"field","required":{"conditions":[["FLEXIBLE","{{workPreferences.arrangements}}","IN"]],"type":"AND"}}],"layoutType":"row","type":"layout"}],"layoutType":"section","title":"Work Arrangement Preferences","type":"layout"},{"id":"fa6a2a1f-5be6-49a3-b2f4-3d872b385741","items":[{"id":"6ef5f812-b4ac-4afe-a442-e620cfd6de97","items":[{"fieldType":"select","id":"4234f10d-dad0-4558-a248-a80d5a3a3ba2","options":{"type":"static","items":[{"label":"Engineering","value":"ENGINEERING"},{"label":"Marketing","value":"MARKETING"},{"label":"Sales","value":"SALES"},{"label":"Human Resources","value":"HR"},{"label":"Finance","value":"FINANCE"},{"label":"Operations","value":"OPERATIONS"},{"label":"Customer Support","value":"SUPPORT"},{"label":"Legal","value":"LEGAL"},{"label":"IT","value":"IT"}]},"propertyPath":"employment.department","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Average Transaction Value","type":"field"},{"fieldType":"select","id":"6e3763e8-85e4-439a-8dec-601e0ca05a93","options":{"type":"static","items":[{"label":"Entry Level","value":"ENTRY"},{"label":"Mid Level","value":"MID"},{"label":"Senior Level","value":"SENIOR"},{"label":"Lead/Principal","value":"LEAD"},{"label":"Manager","value":"MANAGER"},{"label":"Director","value":"DIRECTOR"},{"label":"Executive","value":"EXECUTIVE"}]},"propertyPath":"employment.level","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Monthly Transaction Volume","type":"field"}],"layoutType":"row","type":"layout"},{"id":"65c78f47-603e-402a-8814-75b387d46e98","items":[{"fieldType":"select","helperText":"Select your preferred office locations or regions","id":"261ccbfe-10e3-44e3-a4fd-e5af62afbb50","multiple":true,"options":{"processor":"options_extractCountryNames","type":"dynamic","url":"/config/country-metadata.json"},"propertyPath":"employment.preferredLocations","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Top Transaction Countries","type":"field"}],"layoutType":"row","type":"layout"}],"layoutType":"section","title":"Department & Role Information","type":"layout"},{"id":"8577ae72-d7d8-4934-ba96-06bded294cfd","items":[{"id":"4dae6525-df1c-49a6-8df5-ba9988ee375c","items":[{"fieldType":"select","id":"bdcd1cc9-18a5-4927-b76d-887e8d221d95","options":{"type":"static","items":[{"label":"0-1 years","value":"ENTRY"},{"label":"2-3 years","value":"JUNIOR"},{"label":"4-6 years","value":"MID"},{"label":"7-10 years","value":"SENIOR"},{"label":"10+ years","value":"EXPERT"}]},"propertyPath":"skills.experienceLevel","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Average Transaction Value","type":"field"},{"fieldType":"select","id":"48cded11-533a-4d8b-896d-f3d0a4bf6667","options":{"type":"static","items":[{"label":"High School","value":"HIGH_SCHOOL"},{"label":"Associate Degree","value":"ASSOCIATE"},{"label":"Bachelor's Degree","value":"BACHELOR"},{"label":"Master's Degree","value":"MASTER"},{"label":"Doctoral Degree","value":"DOCTORAL"},{"label":"Professional Certification","value":"CERTIFICATION"}]},"propertyPath":"skills.educationLevel","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Monthly Transaction Volume","type":"field"}],"layoutType":"row","type":"layout"},{"id":"552bbac1-4575-441d-9ce0-f9f25735275e","items":[{"fieldType":"select","helperText":"Select your key technical skills or areas of expertise","id":"c83af188-d6ed-4f0f-b8f9-b0f3d29eb09a","multiple":true,"options":{"type":"static","items":[{"label":"JavaScript/TypeScript","value":"JAVASCRIPT"},{"label":"Python","value":"PYTHON"},{"label":"Java","value":"JAVA"},{"label":"React/Frontend","value":"REACT"},{"label":"Node.js/Backend","value":"NODEJS"},{"label":"Database Management","value":"DATABASE"},{"label":"DevOps/Cloud","value":"DEVOPS"},{"label":"UI/UX Design","value":"DESIGN"},{"label":"Project Management","value":"PM"},{"label":"Data Analysis","value":"DATA"}]},"propertyPath":"skills.technicalSkills","required":{"conditions":[["A","A","EQ"]],"type":"AND"},"title":"Technical Skills","type":"field"}],"layoutType":"row","type":"layout"}],"layoutType":"section","title":"Skills & Experience","type":"layout"},{"type":"layout","layoutType":"section","id":"a8e7b9cc-6f23-4d89-9a45-2b88ef94c627","title":"Additional Information","subtitle":"Add any additional information, preferences, or special requirements as key-value pairs.","items":[{"type":"object-list","id":"f3d4a7bb-9e12-4c56-8f67-4a99cd23e891","propertyPath":"additionalInfo","addLabel":"Add Information","items":[{"type":"layout","layoutType":"row","id":"7b45c8dd-3a78-4e92-b234-8c67f1a9be54","items":[{"type":"field","fieldType":"input","inputType":"text","id":"9f82a1ee-5d34-4b89-a123-7e45bc98f672","title":"Information Type","propertyPath":"key","validations":[{"type":"maxLen","val":50,"message":"Information type should be at most 50 characters"}]},{"type":"field","fieldType":"input","inputType":"text","id":"6c29b5ff-8a67-4f12-9e34-5d78ab12c985","title":"Details","propertyPath":"value","validations":[{"type":"maxLen","val":100,"message":"Details should be at most 100 characters"}]}]}]}]}],"subtitle":"Provide information about your role preferences and work arrangements","title":"Employment Preferences & Setup","type":"layout"}],"subtitle":"This form is designed to collect necessary information for new employee onboarding and HR processes.","title":"Employee Onboarding Form","type":"form"}
+{
+  "id": "20f1e5f5-a539-407f-badb-dd74eb008630",
+  "multistep": true,
+  "review": {
+    "declarations": [
+      {
+        "id": "291812cc-6f1e-4206-a684-ae32d3ef2cf6",
+        "label": "I declare that all information provided in this employee onboarding form is true and accurate to the best of my knowledge",
+        "propertyPath": "employeeDeclaration",
+        "required": true,
+        "type": "declaration"
+      }
+    ],
+    "enable": true,
+    "type": "review"
+  },
+  "steps": [
+    {
+      "id": "f13ec013-f436-4040-9802-5053d49ff83e",
+      "layoutType": "step",
+      "sections": [
+        {
+          "collapsable": true,
+          "id": "d30f0495-afd5-47bd-82a9-f62231d2b348",
+          "items": [
+            {
+              "id": "4a8d144f-db65-4f3d-b5b1-57069e5b1dfa",
+              "items": [
+                {
+                  "fieldType": "input",
+                  "id": "e3972663-a69c-43f3-8365-494a9efc9443",
+                  "inputType": "text",
+                  "propertyPath": "firstName",
+                  "required": true,
+                  "title": "First Name",
+                  "type": "field",
+                  "validations": [
+                    {
+                      "message": "First name should be at most 40 characters",
+                      "type": "maxLen",
+                      "val": 40
+                    }
+                  ]
+                },
+                {
+                  "fieldType": "input",
+                  "id": "9bd6ba7f-8c56-4e72-97ef-393e728c1cf9",
+                  "inputType": "text",
+                  "propertyPath": "middleName",
+                  "title": "Middle Name",
+                  "type": "field",
+                  "validations": [
+                    {
+                      "message": "Middle name should be at most 40 characters",
+                      "type": "maxLen",
+                      "val": 40
+                    }
+                  ]
+                },
+                {
+                  "fieldType": "input",
+                  "id": "0f000de9-30a1-4755-b898-838e7c83bb9a",
+                  "inputType": "text",
+                  "propertyPath": "lastName",
+                  "required": true,
+                  "title": "Last Name",
+                  "type": "field",
+                  "validations": [
+                    {
+                      "message": "Last name should be at most 40 characters",
+                      "type": "maxLen",
+                      "val": 40
+                    }
+                  ]
+                }
+              ],
+              "layoutType": "row",
+              "type": "layout"
+            },
+            {
+              "id": "86a3d115-3d24-4263-9482-de5e74dc139a",
+              "items": [
+                {
+                  "fieldType": "input",
+                  "id": "701c2507-21f3-4c50-8f01-9c63a4fc5e7a",
+                  "inputType": "email",
+                  "propertyPath": "email",
+                  "required": true,
+                  "title": "Personal Email Address",
+                  "type": "field",
+                  "validations": [
+                    {
+                      "message": "Please enter a valid email address",
+                      "type": "pattern",
+                      "val": "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"
+                    },
+                    {
+                      "message": "Email should be at most 60 characters",
+                      "type": "maxLen",
+                      "val": 60
+                    }
+                  ]
+                },
+                {
+                  "fieldType": "date",
+                  "id": "000b840f-d8aa-4e45-b6ff-9d4557cea46c",
+                  "max": {
+                    "init": "__today__",
+                    "offset": {
+                      "yrs": -18
+                    }
+                  },
+                  "propertyPath": "dateOfBirth",
+                  "required": true,
+                  "title": "Date of Birth",
+                  "type": "field",
+                  "validations": [
+                    {
+                      "max": {
+                        "init": "__today__",
+                        "offset": {
+                          "yrs": -18
+                        }
+                      },
+                      "message": "Should be atleast 18 years old",
+                      "min": "1800-01-01",
+                      "type": "dateRange"
+                    }
+                  ]
+                }
+              ],
+              "layoutType": "row",
+              "type": "layout"
+            },
+            {
+              "id": "3ba99a10-ca7e-4f5c-9a57-ca8bc2f18c7d",
+              "items": [
+                {
+                  "fieldType": "select",
+                  "id": "bdc372bc-62d9-4113-bdb4-7969a9b0150d",
+                  "options": {
+                    "processor": "options_extractCountryNames",
+                    "type": "dynamic",
+                    "url": "/config/country-metadata.json"
+                  },
+                  "propertyPath": "nationality",
+                  "required": true,
+                  "title": "Nationality",
+                  "type": "field"
+                },
+                {
+                  "fieldType": "select",
+                  "id": "8daa3057-dfaa-4d34-88b3-47fb865af507",
+                  "options": {
+                    "processor": "options_extractCountryNames",
+                    "type": "dynamic",
+                    "url": "/config/country-metadata.json"
+                  },
+                  "propertyPath": "birthCountry",
+                  "required": true,
+                  "title": "Birth Country",
+                  "type": "field"
+                }
+              ],
+              "layoutType": "row",
+              "type": "layout"
+            },
+            {
+              "id": "c73f5e4a-e741-413c-97e1-9ceee096c167",
+              "items": [
+                {
+                  "fieldType": "select",
+                  "id": "18af16f3-d909-4e0e-9216-d749a4a48e85",
+                  "options": {
+                    "processor": "options_extractMobileCountryCodes",
+                    "type": "dynamic",
+                    "url": "/config/country-metadata.json"
+                  },
+                  "propertyPath": "mobileCountryCode",
+                  "required": true,
+                  "title": "Country Code",
+                  "type": "field"
+                },
+                {
+                  "fieldType": "input",
+                  "id": "44a5e116-500f-4aad-94f9-794819b5985d",
+                  "inputType": "tel",
+                  "propertyPath": "mobile",
+                  "required": true,
+                  "title": "Personal Mobile Number",
+                  "type": "field",
+                  "validations": [
+                    {
+                      "message": "Please enter a valid mobile number (6-15 digits)",
+                      "type": "pattern",
+                      "val": "^[0-9]{6,15}$"
+                    }
+                  ]
+                }
+              ],
+              "layoutType": "row",
+              "type": "layout",
+              "widths": [
+                30,
+                70
+              ]
+            }
+          ],
+          "layoutType": "section",
+          "subtitle": "Your personal details for HR records and company directory",
+          "title": "Personal Information",
+          "type": "layout"
+        },
+        {
+          "id": "3a57975e-60cb-4c2a-af7c-d14540a7171e",
+          "items": [
+            {
+              "id": "8542f966-e7fd-49e6-9e36-629a44b9086b",
+              "items": [
+                {
+                  "id": "a5bf9243-7afa-492f-8746-f68810f80cc2",
+                  "items": [
+                    {
+                      "fieldType": "select",
+                      "id": "5b039602-97b5-4681-befb-c4cec18a6ef3",
+                      "options": {
+                        "processor": "options_extractCountryNames",
+                        "type": "dynamic",
+                        "url": "/config/country-metadata.json"
+                      },
+                      "propertyPath": "taxCountry",
+                      "required": true,
+                      "title": "Tax Country",
+                      "type": "field"
+                    },
+                    {
+                      "fieldType": "input",
+                      "id": "7d9e27cd-96d6-48bc-8bf4-4761cbf438af",
+                      "inputType": "text",
+                      "propertyPath": "taxNumber",
+                      "hide": {
+                        "conditions": [
+                          [
+                            "{{__olCurrEntry__.taxCountry}}",
+                            "",
+                            "EMP"
+                          ]
+                        ],
+                        "type": "AND"
+                      },
+                      "title": "Tax Number",
+                      "type": "field",
+                      "validations": [
+                        {
+                          "message": "Tax number should be at most 64 characters",
+                          "type": "maxLen",
+                          "val": 64
+                        }
+                      ]
+                    }
+                  ],
+                  "layoutType": "row",
+                  "type": "layout"
+                }
+              ],
+              "min": 1,
+              "propertyPath": "taxDetails",
+              "title": "Tax Details",
+              "type": "object-list"
+            }
+          ],
+          "layoutType": "section",
+          "subtitle": "Provide your tax information for payroll and compliance purposes",
+          "title": "Tax & Compliance Information",
+          "type": "layout"
+        },
+        {
+          "id": "17894ca3-9302-4f84-adf9-e9f8a986b49e",
+          "items": [
+            {
+              "id": "08d579e7-3497-4e3d-89ed-18af3bedb817",
+              "items": [
+                {
+                  "fieldType": "input",
+                  "id": "278ee499-dc91-4456-96f3-ecdeea3a5f41",
+                  "inputType": "text",
+                  "propertyPath": "homeAddress.addressLine1",
+                  "required": true,
+                  "title": "Address Line 1",
+                  "type": "field",
+                  "validations": [
+                    {
+                      "message": "Address line 1 should be at most 100 characters",
+                      "type": "maxLen",
+                      "val": 100
+                    }
+                  ]
+                },
+                {
+                  "fieldType": "input",
+                  "id": "243996c5-439c-4dfc-a36e-f7f316875354",
+                  "inputType": "text",
+                  "propertyPath": "homeAddress.addressLine2",
+                  "title": "Address Line 2",
+                  "type": "field",
+                  "validations": [
+                    {
+                      "message": "Address line 2 should be at most 100 characters",
+                      "type": "maxLen",
+                      "val": 100
+                    }
+                  ]
+                },
+                {
+                  "fieldType": "select",
+                  "id": "aae44bbe-5270-4fb1-9258-f6815c86ca58",
+                  "options": {
+                    "processor": "options_extractCountryNames",
+                    "type": "dynamic",
+                    "url": "/config/country-metadata.json"
+                  },
+                  "propertyPath": "homeAddress.country",
+                  "required": true,
+                  "title": "Country",
+                  "type": "field"
+                }
+              ],
+              "layoutType": "row",
+              "type": "layout"
+            },
+            {
+              "id": "233ebece-bebc-4126-b429-996b03dda2b4",
+              "items": [
+                {
+                  "fieldType": "input",
+                  "id": "abbe1554-8d50-42a4-9f46-508e926e0513",
+                  "inputType": "text",
+                  "propertyPath": "homeAddress.city",
+                  "required": true,
+                  "title": "City",
+                  "type": "field",
+                  "validations": [
+                    {
+                      "message": "City should be at most 50 characters",
+                      "type": "maxLen",
+                      "val": 50
+                    }
+                  ]
+                },
+                {
+                  "fieldType": "input",
+                  "inputType": "text",
+                  "id": "9604d5cb-a56f-47ee-9d7e-3a52df9a91a1",
+                  "propertyPath": "homeAddress.state",
+                  "disable": {
+                    "conditions": [
+                      [
+                        "{{homeAddress.country}}",
+                        "",
+                        "EMP"
+                      ]
+                    ],
+                    "type": "AND"
+                  },
+                  "required": true,
+                  "title": "State/Province",
+                  "type": "field"
+                },
+                {
+                  "fieldType": "input",
+                  "id": "1a1bd80d-df16-4b24-8156-ff994fd5fe38",
+                  "inputType": "text",
+                  "propertyPath": "homeAddress.postcode",
+                  "required": true,
+                  "title": "Postal Code",
+                  "type": "field",
+                  "validations": [
+                    {
+                      "message": "Postal code should be atmost 10 character and alphanumeric",
+                      "type": "pattern",
+                      "val": "^[A-Za-z0-9 ]{0,10}$"
+                    }
+                  ]
+                }
+              ],
+              "layoutType": "row",
+              "type": "layout"
+            }
+          ],
+          "layoutType": "section",
+          "title": "Home Address",
+          "type": "layout"
+        },
+        {
+          "id": "d79b513c-4b38-475c-81d1-37ca1d31aac4",
+          "items": [
+            {
+              "id": "bfbccb5c-e73c-4b14-a6a1-99e7313dbe46",
+              "items": [
+                {
+                  "fieldType": "radio-binary",
+                  "id": "0b4c9fd8-ba1f-4f1d-8cb4-cc95d7d83817",
+                  "propertyPath": "isPep",
+                  "title": "Do you have any political affiliations or positions that should be disclosed?",
+                  "type": "field",
+                  "required": true
+                }
+              ],
+              "layoutType": "row",
+              "type": "layout"
+            }
+          ],
+          "layoutType": "section",
+          "subtitle": "Background information required for employment compliance",
+          "title": "Background Check Information",
+          "type": "layout"
+        }
+      ],
+      "subtitle": "Please provide your personal information and contact details for your employee profile.",
+      "title": "Employee Information",
+      "type": "layout"
+    },
+    {
+      "id": "508e36a9-f3a0-496d-8288-19a85b93c001",
+      "layoutType": "step",
+      "sections": [
+        {
+          "id": "12b5d793-9412-44b9-bb23-dcf4d76476a0",
+          "items": [
+            {
+              "id": "f62a78ea-7de9-47e1-ab3d-032e7bdbbf4d",
+              "items": [
+                {
+                  "fieldType": "select",
+                  "id": "8b0b2e50-da81-46a9-9c19-741d66657c1d",
+                  "options": {
+                    "processor": "options_extractCountryNames",
+                    "type": "dynamic",
+                    "url": "/config/country-metadata.json"
+                  },
+                  "propertyPath": "payrollBankDetails.bankCountry",
+                  "required": true,
+                  "title": "Bank Country",
+                  "type": "field"
+                },
+                {
+                  "fieldType": "select",
+                  "id": "ff8ee05d-32d3-448a-ad67-92b91e3855b7",
+                  "options": {
+                    "processor": "options_extractCurrencyCodes",
+                    "type": "dynamic",
+                    "url": "/config/country-metadata.json"
+                  },
+                  "propertyPath": "payrollBankDetails.currency",
+                  "required": true,
+                  "title": "Bank Currency",
+                  "type": "field"
+                }
+              ],
+              "layoutType": "row",
+              "type": "layout"
+            }
+          ],
+          "layoutType": "section",
+          "title": "Salary Payment Details",
+          "type": "layout"
+        },
+        {
+          "type": "layout",
+          "layoutType": "section",
+          "sectionType": "lazy",
+          "id": "9dhjfd25bf-9a51-48cc-b7cd-1c5c048e2126",
+          "title": "Additional Payroll Information",
+          "subtitle": "Provide additional bank account details for salary payments.",
+          "url": "{{__context__.bankDetailsSectionSchemaUrl}}",
+          "hide": {
+            "conditions": [
+              [
+                "{{payrollBankDetails.currency}}",
+                "",
+                "EMP"
+              ],
+              [
+                "{{payrollBankDetails.bankCountry}}",
+                "",
+                "EMP"
+              ]
+            ],
+            "type": "OR"
+          }
+        }
+      ],
+      "subtitle": "Provide your banking details for salary payments and direct deposits",
+      "title": "Payment & Banking Information",
+      "type": "layout"
+    },
+    {
+      "id": "b6c8ecfa-9aa1-4614-b186-1e15b9a66796",
+      "layoutType": "step",
+      "sections": [
+        {
+          "id": "9f6baac6-eea2-4a6c-8231-fb8a4f59582d",
+          "items": [
+            {
+              "id": "3e76717c-f5f3-4510-a4a2-cf308d74c83f",
+              "items": [
+                {
+                  "fieldType": "select",
+                  "helperText": "Select your preferred work arrangements",
+                  "id": "0bc642f8-67ff-4382-bb84-d00e36a5a3c4",
+                  "multiple": true,
+                  "options": {
+                    "type": "static",
+                    "items": [
+                      {
+                        "label": "Remote Work",
+                        "value": "REMOTE"
+                      },
+                      {
+                        "label": "Hybrid Work",
+                        "value": "HYBRID"
+                      },
+                      {
+                        "label": "On-site Work",
+                        "value": "ONSITE"
+                      },
+                      {
+                        "label": "Flexible Hours",
+                        "value": "FLEXIBLE"
+                      },
+                      {
+                        "label": "Standard Hours",
+                        "value": "STANDARD"
+                      }
+                    ]
+                  },
+                  "propertyPath": "workPreferences.arrangements",
+                  "required": true,
+                  "title": "Preferred Work Arrangements",
+                  "type": "field"
+                }
+              ],
+              "layoutType": "row",
+              "type": "layout"
+            },
+            {
+              "id": "9afb1fef-4e9b-4923-8cdb-cb9951177cdc",
+              "items": [
+                {
+                  "fieldType": "input",
+                  "helperText": "Please provide additional details about your work preferences or special requirements",
+                  "id": "b978c191-f122-4f93-8662-9313d0e0a8dd",
+                  "inputType": "text",
+                  "multiline": 3,
+                  "propertyPath": "workPreferences.additionalNotes",
+                  "title": "Additional Work Preference Notes",
+                  "type": "field",
+                  "required": {
+                    "conditions": [
+                      [
+                        "FLEXIBLE",
+                        "{{workPreferences.arrangements}}",
+                        "IN"
+                      ]
+                    ],
+                    "type": "AND"
+                  }
+                }
+              ],
+              "layoutType": "row",
+              "type": "layout"
+            }
+          ],
+          "layoutType": "section",
+          "title": "Work Arrangement Preferences",
+          "type": "layout"
+        },
+        {
+          "id": "fa6a2a1f-5be6-49a3-b2f4-3d872b385741",
+          "items": [
+            {
+              "id": "6ef5f812-b4ac-4afe-a442-e620cfd6de97",
+              "items": [
+                {
+                  "fieldType": "select",
+                  "id": "4234f10d-dad0-4558-a248-a80d5a3a3ba2",
+                  "options": {
+                    "type": "static",
+                    "items": [
+                      {
+                        "label": "Engineering",
+                        "value": "ENGINEERING"
+                      },
+                      {
+                        "label": "Marketing",
+                        "value": "MARKETING"
+                      },
+                      {
+                        "label": "Sales",
+                        "value": "SALES"
+                      },
+                      {
+                        "label": "Human Resources",
+                        "value": "HR"
+                      },
+                      {
+                        "label": "Finance",
+                        "value": "FINANCE"
+                      },
+                      {
+                        "label": "Operations",
+                        "value": "OPERATIONS"
+                      },
+                      {
+                        "label": "Customer Support",
+                        "value": "SUPPORT"
+                      },
+                      {
+                        "label": "Legal",
+                        "value": "LEGAL"
+                      },
+                      {
+                        "label": "IT",
+                        "value": "IT"
+                      }
+                    ]
+                  },
+                  "propertyPath": "employment.department",
+                  "required": true,
+                  "title": "Average Transaction Value",
+                  "type": "field"
+                },
+                {
+                  "fieldType": "select",
+                  "id": "6e3763e8-85e4-439a-8dec-601e0ca05a93",
+                  "options": {
+                    "type": "static",
+                    "items": [
+                      {
+                        "label": "Entry Level",
+                        "value": "ENTRY"
+                      },
+                      {
+                        "label": "Mid Level",
+                        "value": "MID"
+                      },
+                      {
+                        "label": "Senior Level",
+                        "value": "SENIOR"
+                      },
+                      {
+                        "label": "Lead/Principal",
+                        "value": "LEAD"
+                      },
+                      {
+                        "label": "Manager",
+                        "value": "MANAGER"
+                      },
+                      {
+                        "label": "Director",
+                        "value": "DIRECTOR"
+                      },
+                      {
+                        "label": "Executive",
+                        "value": "EXECUTIVE"
+                      }
+                    ]
+                  },
+                  "propertyPath": "employment.level",
+                  "required": true,
+                  "title": "Monthly Transaction Volume",
+                  "type": "field"
+                }
+              ],
+              "layoutType": "row",
+              "type": "layout"
+            }
+          ],
+          "layoutType": "section",
+          "title": "Department & Role Information",
+          "type": "layout"
+        },
+        {
+          "id": "8577ae72-d7d8-4934-ba96-06bded294cfd",
+          "items": [
+            {
+              "id": "4dae6525-df1c-49a6-8df5-ba9988ee375c",
+              "items": [
+                {
+                  "fieldType": "select",
+                  "id": "bdcd1cc9-18a5-4927-b76d-887e8d221d95",
+                  "options": {
+                    "type": "static",
+                    "items": [
+                      {
+                        "label": "0-1 years",
+                        "value": "ENTRY"
+                      },
+                      {
+                        "label": "2-3 years",
+                        "value": "JUNIOR"
+                      },
+                      {
+                        "label": "4-6 years",
+                        "value": "MID"
+                      },
+                      {
+                        "label": "7-10 years",
+                        "value": "SENIOR"
+                      },
+                      {
+                        "label": "10+ years",
+                        "value": "EXPERT"
+                      }
+                    ]
+                  },
+                  "propertyPath": "skills.experienceLevel",
+                  "required": true,
+                  "title": "Experience Level",
+                  "type": "field"
+                },
+                {
+                  "fieldType": "select",
+                  "id": "48cded11-533a-4d8b-896d-f3d0a4bf6667",
+                  "options": {
+                    "type": "static",
+                    "items": [
+                      {
+                        "label": "High School",
+                        "value": "HIGH_SCHOOL"
+                      },
+                      {
+                        "label": "Associate Degree",
+                        "value": "ASSOCIATE"
+                      },
+                      {
+                        "label": "Bachelor's Degree",
+                        "value": "BACHELOR"
+                      },
+                      {
+                        "label": "Master's Degree",
+                        "value": "MASTER"
+                      },
+                      {
+                        "label": "Doctoral Degree",
+                        "value": "DOCTORAL"
+                      },
+                      {
+                        "label": "Professional Certification",
+                        "value": "CERTIFICATION"
+                      }
+                    ]
+                  },
+                  "propertyPath": "skills.educationLevel",
+                  "required": true,
+                  "title": "Monthly Transaction Volume",
+                  "type": "field"
+                }
+              ],
+              "layoutType": "row",
+              "type": "layout"
+            },
+            {
+              "id": "552bbac1-4575-441d-9ce0-f9f25735275e",
+              "items": [
+                {
+                  "fieldType": "select",
+                  "helperText": "Select your key technical skills or areas of expertise",
+                  "id": "c83af188-d6ed-4f0f-b8f9-b0f3d29eb09a",
+                  "multiple": true,
+                  "options": {
+                    "type": "static",
+                    "items": [
+                      {
+                        "label": "JavaScript/TypeScript",
+                        "value": "JAVASCRIPT"
+                      },
+                      {
+                        "label": "Python",
+                        "value": "PYTHON"
+                      },
+                      {
+                        "label": "Java",
+                        "value": "JAVA"
+                      },
+                      {
+                        "label": "React/Frontend",
+                        "value": "REACT"
+                      },
+                      {
+                        "label": "Node.js/Backend",
+                        "value": "NODEJS"
+                      },
+                      {
+                        "label": "Database Management",
+                        "value": "DATABASE"
+                      },
+                      {
+                        "label": "DevOps/Cloud",
+                        "value": "DEVOPS"
+                      },
+                      {
+                        "label": "UI/UX Design",
+                        "value": "DESIGN"
+                      },
+                      {
+                        "label": "Project Management",
+                        "value": "PM"
+                      },
+                      {
+                        "label": "Data Analysis",
+                        "value": "DATA"
+                      }
+                    ]
+                  },
+                  "propertyPath": "skills.technicalSkills",
+                  "required": true,
+                  "title": "Technical Skills",
+                  "type": "field"
+                }
+              ],
+              "layoutType": "row",
+              "type": "layout"
+            }
+          ],
+          "layoutType": "section",
+          "title": "Skills & Experience",
+          "type": "layout"
+        },
+        {
+          "type": "layout",
+          "layoutType": "section",
+          "id": "a8e7b9cc-6f23-4d89-9a45-2b88ef94c627",
+          "title": "Additional Information",
+          "subtitle": "Add any additional information, preferences, or special requirements as key-value pairs.",
+          "items": [
+            {
+              "type": "object-list",
+              "id": "f3d4a7bb-9e12-4c56-8f67-4a99cd23e891",
+              "propertyPath": "additionalInfo",
+              "addLabel": "Add Information",
+              "items": [
+                {
+                  "type": "layout",
+                  "layoutType": "row",
+                  "id": "7b45c8dd-3a78-4e92-b234-8c67f1a9be54",
+                  "items": [
+                    {
+                      "type": "field",
+                      "fieldType": "input",
+                      "inputType": "text",
+                      "id": "9f82a1ee-5d34-4b89-a123-7e45bc98f672",
+                      "title": "Information Type",
+                      "propertyPath": "key",
+                      "validations": [
+                        {
+                          "type": "maxLen",
+                          "val": 50,
+                          "message": "Information type should be at most 50 characters"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "field",
+                      "fieldType": "input",
+                      "inputType": "text",
+                      "id": "6c29b5ff-8a67-4f12-9e34-5d78ab12c985",
+                      "title": "Details",
+                      "propertyPath": "value",
+                      "validations": [
+                        {
+                          "type": "maxLen",
+                          "val": 100,
+                          "message": "Details should be at most 100 characters"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "subtitle": "Provide information about your role preferences and work arrangements",
+      "title": "Employment Preferences & Setup",
+      "type": "layout"
+    }
+  ],
+  "subtitle": "This form is designed to collect necessary information for new employee onboarding and HR processes.",
+  "title": "Employee Onboarding Form",
+  "type": "form"
+}

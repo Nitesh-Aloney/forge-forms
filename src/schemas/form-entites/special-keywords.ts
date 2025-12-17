@@ -40,5 +40,8 @@ export type TDECLARATION_REFERENCE = z.infer<typeof DECLARATION_REFERENCE>;
 export const OBJECT_LIST_CURR_ENTRY = z.literal('__olCurrEntry__');
 export type TOBJECT_LIST_CURR_ENTRY = z.infer<typeof OBJECT_LIST_CURR_ENTRY>;
 
+/**
+ * Not implemented
+ */
 export const OBJECT_LIST_ANY_ENTRY = z.literal('__olAnyEntry__');
 export type TOBJECT_LIST_ANY_ENTRY = z.infer<typeof OBJECT_LIST_ANY_ENTRY>;

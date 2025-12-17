@@ -1,54 +1,27 @@
-import type { TOptionProcessorFunctionSignature } from '@/features/dynamic-forms/types';
-import type { TRFIConstants } from '@/hooks/api/useGetConstants';
-import type { TCountryConfig, TRegulatoryRegionConfig, TRegulatoryRegionMetadata } from '@/types/region';
+import type { TOptionProcessorFunctionSignature } from '@/types';
 
-export const extractFromConstants = (data: TRFIConstants, key: string) =>
+export type TConstants = Record<string, { data: { code: string; description: string }[] }>;
+
+export type TRegulatoryRegion = 'SG' | 'AU' | 'EU' | 'HK' | 'UK' | 'US' | 'CA' | 'NZ' | 'JP' | 'ID' | 'NL' | 'MY';
+export type TRegulatoryRegionMetadata = {
+  value: TRegulatoryRegion;
+};
+export type TRegulatoryRegionConfig = Record<TRegulatoryRegion, TRegulatoryRegionMetadata>;
+
+export type TCountryMetadata = {
+  code: string;
+  countryName: string;
+  mobileCountryCode: string;
+  currencyCode: string;
+  currencyName: string;
+};
+export type TCountryConfig = Record<string, TCountryMetadata>;
+
+export const extractFromConstants = (data: TConstants, key: string) =>
   data?.[key]?.data?.map?.(({ code, description }) => ({
     label: description,
     value: code,
   })) || [];
-
-export const options_extractIntendedUseOfAccount: TOptionProcessorFunctionSignature = <D>(data: D) =>
-  extractFromConstants(data as TRFIConstants, 'intendedUseOfAccount');
-
-export const options_extractMonTxnVol: TOptionProcessorFunctionSignature = <D>(data: D) =>
-  extractFromConstants(data as TRFIConstants, 'monthlyTransactionVolume');
-
-export const options_extractAvgTxnValue: TOptionProcessorFunctionSignature = <D>(data: D) =>
-  extractFromConstants(data as TRFIConstants, 'averageTransactionValue');
-
-export const options_extractIntendedUses: TOptionProcessorFunctionSignature = <D>(data: D) =>
-  extractFromConstants(data as TRFIConstants, 'intendedUseOfAccount');
-
-export const options_extractTotalEmployees: TOptionProcessorFunctionSignature = <D>(data: D) =>
-  extractFromConstants(data as TRFIConstants, 'totalEmployees');
-
-export const options_extractListedExchange: TOptionProcessorFunctionSignature = <D>(data: D) =>
-  extractFromConstants(data as TRFIConstants, 'listedExchange');
-
-export const options_extractUnregulatedTrustTypes: TOptionProcessorFunctionSignature = <D>(data: D) =>
-  extractFromConstants(data as TRFIConstants, 'unregulatedTrustType');
-
-export const options_extractStates = ((data: TRFIConstants) =>
-  extractFromConstants(data, 'isoState')) as TOptionProcessorFunctionSignature;
-
-export const options_extractStreetTypes = ((data: TRFIConstants) =>
-  extractFromConstants(data, 'streetType')) as TOptionProcessorFunctionSignature;
-
-export const options_extractTrustBeneficiaryClass = ((data: TRFIConstants) =>
-  extractFromConstants(data, 'trustBeneficiaryClass')) as TOptionProcessorFunctionSignature;
-
-export const options_extractAnnualTurnover = ((data: TRFIConstants) =>
-  extractFromConstants(data, 'annualTurnover')) as TOptionProcessorFunctionSignature;
-
-export const options_extractIndustrySectors = ((data: TRFIConstants) =>
-  extractFromConstants(data, 'industrySector')) as TOptionProcessorFunctionSignature;
-
-export const options_extractExpectedMonthlyTransactionVolume = ((data: TRFIConstants) =>
-  extractFromConstants(data, 'monthlyTransactions')) as TOptionProcessorFunctionSignature;
-
-export const options_extractPositions = ((data: TRFIConstants) =>
-  extractFromConstants(data, 'position')) as TOptionProcessorFunctionSignature;
 
 export const options_extractCountryNames: TOptionProcessorFunctionSignature = <D>(data: D) =>
   Object.values(data as TCountryConfig)?.map?.(({ countryName, code }) => ({

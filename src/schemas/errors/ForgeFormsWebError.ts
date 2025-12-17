@@ -4,19 +4,19 @@ export type ErrorDetails = {
   description: string;
 };
 
-export type TConfFormsWebErrorProps = {
+export type TForgeFormsWebErrorProps = {
   message?: string;
   code?: string;
   errors?: ErrorDetails[];
   retry?: () => void;
 };
 
-class ConfFormsWebError extends Error {
+class FormsForgeWebError extends Error {
   code?: string;
   errors?: ErrorDetails[];
-  retry?: TConfFormsWebErrorProps['retry'];
+  retry?: TForgeFormsWebErrorProps['retry'];
 
-  constructor({ message, code, errors, retry }: TConfFormsWebErrorProps) {
+  constructor({ message, code, errors, retry }: TForgeFormsWebErrorProps) {
     super(message);
 
     this.code = code || 'UNKNOWN';
@@ -25,7 +25,7 @@ class ConfFormsWebError extends Error {
   }
 
   toString() {
-    return `ConfFormsWebError
+    return `ForgeFormsWebError
       message: ${this.message}
       errors: ${this.errors?.map(error => `${error.code}: ${error.description}`).join(', ')}
       code: ${this.code}
@@ -33,4 +33,4 @@ class ConfFormsWebError extends Error {
   }
 }
 
-export default ConfFormsWebError;
+export default FormsForgeWebError;

@@ -1,7 +1,7 @@
 import { createContext, type FC, type LazyExoticComponent, type ReactNode, use, useMemo } from 'react';
 import type { FieldValues } from 'react-hook-form';
-import ConfFormsWebError from '@/schemas/errors/ConfFormsWebError';
 import type { TErrorDetails } from '@/schemas/errors/error-response';
+import FormsForgeWebError from '@/schemas/errors/ForgeFormsWebError';
 import type { TFormElement } from '@/schemas/form-entites/form';
 import type { TFileUploadField } from '@/schemas/form-entites/form-fields';
 import type { TLazySectionProcessorPrefix } from '@/schemas/form-entites/layout';
@@ -76,7 +76,7 @@ export const FormIntegrationsContext = createContext<TFormIntegrationsContext | 
 export function useFormIntegrations() {
   const context = use(FormIntegrationsContext);
   if (!context)
-    throw new ConfFormsWebError({ message: 'useFormIntegrations must be used within a FormIntegrationsContextProvider' });
+    throw new FormsForgeWebError({ message: 'useFormIntegrations must be used within a FormIntegrationsContextProvider' });
 
   return context;
 }

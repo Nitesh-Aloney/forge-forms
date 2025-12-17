@@ -1,31 +1,61 @@
-# Conf Forms Documentation
+# Forge Froms Documentation
 
-This guide provides comprehensive documentation for creating form schemas using the Conf forms feature. The schema-based approach allows non-technical staff to create complex, interactive forms with validations, conditions, and various field types.
+This guide provides comprehensive documentation for creating form schemas using the "Forge Froms" feature. The schema-based approach allows non-technical staff to create complex, interactive forms with validations, conditions, and various field types.
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Field References and Special Keywords](#field-references-and-special-keywords)
+  - [Referencing Other Fields](#referencing-other-fields)
+  - [Special Keywords](#special-keywords)
 - [Date and DateTime Formats](#date-and-datetime-formats)
   - [Date Format](#date-format)
   - [DateTime Format](#datetime-format)
+  - [Offset Units](#offset-units)
 - [Form Structure](#form-structure)
 - [Elements](#elements)
   - [Layout Elements](#layout-elements)
+    - [Form](#form)
+    - [Step](#step)
+    - [Section](#section)
+    - [Row](#row)
+    - [Object List](#object-list)
   - [Field Elements](#field-elements)
+    - [Text Input](#text-input)
+    - [Textarea](#textarea)
+    - [Select](#select)
+    - [Radio](#radio)
+    - [Radio Binary](#radio-binary)
+    - [Checkbox](#checkbox)
+    - [Date](#date)
+    - [Time](#time)
+    - [DateTime](#datetime)
+    - [Switch](#switch)
+    - [File Upload](#file-upload)
 - [Validation](#validation)
+  - [String Validations](#string-validations)
+  - [Number Validations](#number-validations)
+  - [Date Validations](#date-validations)
+  - [DateTime Validations](#datetime-validations)
+  - [File Validations](#file-validations)
+  - [Selection Validations](#selection-validations)
+  - [Conditional Validations](#conditional-validations)
+  - [Custom Function Validations](#custom-function-validations)
 - [Conditions](#conditions)
 - [Operators](#operators)
 - [Options](#options)
+  - [Static Options](#static-options)
+  - [Dynamic Options](#dynamic-options)
+- [Best Practices](#best-practices)
 - [Complete Form Example](#complete-form-example)
 
 ## Introduction
 
-The Conf forms feature enables the creation of complex forms through JSON schemas. These schemas define not just the fields and their layouts, but also validations, conditional logic, and dynamic behaviors.
+The "Forge Froms" feature enables the creation of complex forms through JSON schemas. These schemas define not just the fields and their layouts, but also validations, conditional logic, and dynamic behaviors.
 
 ## Field References and Special Keywords
 
-The Conf forms system supports several ways to reference other fields and special dynamic values.
+The "Forge Froms" system supports several ways to reference other fields and special dynamic values.
 
 ### Referencing Other Fields
 
@@ -57,18 +87,21 @@ The system provides several special keywords that can be used in conditions, val
 |---------|-------------|--------------|
 | `__self__` | References the current field's value | `["{{__self__}}", "0", "GT"]` (value must be greater than 0) |
 | `__context__` | References the values in context | `{{__context__.env.value}}` (env.value property from context object) |
+| `__declaration__` | References declaration state in forms | Used for maintaining declarations state within dynamic forms |
+| `__olCurrEntry__` | References current entry in object lists | `{{__olCurrEntry__.fieldName}}` (current object list item's field value) |
+| `__olAnyEntry__` | References any entry in object lists | *Not implemented - reserved for future use* |
 | `__today__` | Current date without time | `"max": "__today__"` (date must not be in the future) |
 | `__now__` | Current date and time | `"max": "__now__"` (date-time must not be in the future) |
 
 ## Date and DateTime Formats
 
-The Conf forms system supports flexible date and time formats with special keywords and relative time expressions.
+The "Forge Froms" system supports flexible date and time formats with special keywords and relative time expressions.
 
 ### Date Format
 
 Standard format for dates: `YYYY-MM-DD` (e.g., `2023-04-15`)
 
-Dates in the Conf forms system follow the ISO 8601 format without the time component. They can be used in date fields, validations, and conditions.
+Dates in the "Forge Froms" system follow the ISO 8601 format without the time component. They can be used in date fields, validations, and conditions.
 
 #### Examples
 
@@ -102,7 +135,7 @@ Dates in the Conf forms system follow the ISO 8601 format without the time compo
 
 Standard format for date-times: `YYYY-MM-DDTHH:mm:ss.sssZ` (e.g., `2023-04-15T14:30:00.000Z`)
 
-DateTimes in the Conf forms system follow the ISO 8601 format with the time component and timezone information. They can be used in datetime fields, validations, and conditions.
+DateTimes in the "Forge Froms" system follow the ISO 8601 format with the time component and timezone information. They can be used in datetime fields, validations, and conditions.
 
 #### Examples
 
@@ -161,6 +194,7 @@ A form is organized hierarchically:
 4. **Rows**: Horizontal arrangements of fields
 5. **Fields**: Individual input elements
 
+
 ## Elements
 
 ### Layout Elements
@@ -184,10 +218,10 @@ The top-level container for all form elements.
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "form" |
-| `id` | string | Yes | Unique identifier for the form |
-| `title` | string | Yes | Main form title |
-| `subtitle` | string | No | Optional subtitle or description |
+| `type` | `string` | Yes | Must be "form" |
+| `id` | `string` | Yes | Unique identifier for the form |
+| `title` | `string` | Yes | Main form title |
+| `subtitle` | `string` | No | Optional subtitle or description |
 | `multistep` | boolean | No | If true, enables multi-step form with navigation |
 | `steps` | array | Yes | Array of step elements (at least 1 required) |
 
@@ -209,11 +243,11 @@ A logical grouping of sections that represents a single page in a multi-step for
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "layout" |
-| `layoutType` | string | Yes | Must be "step" |
-| `id` | string | Yes | Unique identifier for the step |
-| `title` | string | No | Step title (shown in navigation) |
-| `subtitle` | string | No | Optional subtitle or description |
+| `type` | `string` | Yes | Must be "layout" |
+| `layoutType` | `string` | Yes | Must be "step" |
+| `id` | `string` | Yes | Unique identifier for the step |
+| `title` | `string` | No | Step title (shown in navigation) |
+| `subtitle` | `string` | No | Optional subtitle or description |
 | `sections` | array | Yes | Array of section elements (at least 1 required) |
 
 #### Section
@@ -236,11 +270,11 @@ A group of related form elements, typically displayed with a title and optional 
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "layout" |
-| `layoutType` | string | Yes | Must be "section" |
-| `id` | string | Yes | Unique identifier for the section |
-| `title` | string | No | Section title |
-| `subtitle` | string | No | Optional subtitle or description |
+| `type` | `string` | Yes | Must be "layout" |
+| `layoutType` | `string` | Yes | Must be "section" |
+| `id` | `string` | Yes | Unique identifier for the section |
+| `title` | `string` | No | Section title |
+| `subtitle` | `string` | No | Optional subtitle or description |
 | `collapsable` | boolean | No | If true, section can be collapsed/expanded |
 | `items` | array | Yes | Array of row elements or object list elements |
 
@@ -262,9 +296,9 @@ A horizontal arrangement of form fields, with optional width distribution.
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "layout" |
-| `layoutType` | string | Yes | Must be "row" |
-| `id` | string | Yes | Unique identifier for the row |
+| `type` | `string` | Yes | Must be "layout" |
+| `layoutType` | `string` | Yes | Must be "row" |
+| `id` | `string` | Yes | Unique identifier for the row |
 | `widths` | array | No | Array of percentage widths for each item (must sum to 100) |
 | `items` | array | Yes | Array of field elements |
 
@@ -287,11 +321,11 @@ A repeatable group of fields that allows users to add multiple entries of the sa
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "object-list" |
-| `id` | string | Yes | Unique identifier for the object list |
-| `title` | string | No | Title displayed for the list |
-| `subtitle` | string | No | Optional subtitle or description |
-| `propertyPath` | string | Yes | Path where the array of objects will be stored |
+| `type` | `string` | Yes | Must be "object-list" |
+| `id` | `string` | Yes | Unique identifier for the object list |
+| `title` | `string` | No | Title displayed for the list |
+| `subtitle` | `string` | No | Optional subtitle or description |
+| `propertyPath` | `string` | Yes | Path where the array of objects will be stored |
 | `items` | array | Yes | Array of row or section elements to be repeated |
 
 ### Form Field Elements
@@ -322,17 +356,20 @@ Single-line text input field.
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "field" |
-| `fieldType` | string | Yes | Must be "input" |
-| `inputType` | string | Yes | One of: "text", "email", "password", "tel", "url", "number" |
-| `id` | string | Yes | Unique identifier for the field |
-| `title` | string | Yes | Field label |
-| `propertyPath` | string | Yes | Path where the value will be stored |
-| `placeholder` | string | No | Placeholder text |
-| `helperText` | string | No | Help text displayed below the field |
-| `multiline` | number | No | Number of lines for multiline text input (only for inputType "text") |
-| `default` | string/number | No | Default value for the field |
-| `validations` | array | No | Array of validation rules |
+| `type` | `string` | Yes | Must be "field" |
+| `fieldType` | `string` | Yes | Must be "input" |
+| `inputType` | `string` | Yes | One of: "text", "email", "password", "tel", "url", "number" |
+| `id` | `string` | Yes | Unique identifier for the field |
+| `title` | `string` | Yes | Field label |
+| `propertyPath` | `string` | Yes | Path where the value will be stored |
+| `placeholder` | `string` | No | Placeholder text |
+| `helperText` | `string` | No | Help text displayed below the field |
+| `multiline` | `number` | No | Number of lines for multiline text input (only for inputType "text") |
+| `defaultValue` | `string/number` | No | Default value for the field |
+| `required` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is required |
+| `hide` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is hidden |
+| `disable` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is disabled |
+| `validations` | array | No | Array of [validation](#validation) rules |
 
 #### Textarea
 
@@ -352,14 +389,47 @@ Multi-line text input field.
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "field" |
-| `fieldType` | string | Yes | Must be "textarea" |
-| `id` | string | Yes | Unique identifier for the field |
-| `title` | string | Yes | Label displayed for the field |
-| `propertyPath` | string | Yes | Path to the property in the form data |
-| `placeholder` | string | No | Placeholder text |
-| `helperText` | string | No | Help text displayed below the field |
-| `validations` | array | No | Array of validation rules |
+| `type` | `string` | Yes | Must be "field" |
+| `fieldType` | `string` | Yes | Must be "input" |
+| `inputType` | `string` | Yes | One of: "text", "email", "password", "tel", "url", "number" |
+| `id` | `string` | Yes | Unique identifier for the field |
+| `title` | `string` | Yes | Field label |
+| `propertyPath` | `string` | Yes | Path where the value will be stored |
+| `placeholder` | `string` | No | Placeholder text |
+| `helperText` | `string` | No | Help text displayed below the field |
+| `multiline` | `number` | No | Number of lines for multiline text input (only for inputType "text") |
+| `default` | `string` \| `number` | No | Default value for the field |
+| `validations` | [Validations](#validation)[] | No | Array of [validation](#validation) rules |
+
+#### Textarea
+
+Multi-line text input field.
+
+```json
+{
+  "type": "field",
+  "fieldType": "textarea",
+  "id": "description",
+  "title": "Description",
+  "propertyPath": "description",
+  "placeholder": "Enter a detailed description...",
+  "helperText": "Provide as much detail as possible"
+}
+```
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `type` | `string` | Yes | Must be "field" |
+| `fieldType` | `string` | Yes | Must be "textarea" |
+| `id` | `string` | Yes | Unique identifier for the field |
+| `title` | `string` | Yes | Label displayed for the field |
+| `propertyPath` | `string` | Yes | Path to the property in the form data |
+| `placeholder` | `string` | No | Placeholder text |
+| `helperText` | `string` | No | Help text displayed below the field |
+| `required` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is required |
+| `hide` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is hidden |
+| `disable` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is disabled |
+| `validations` | array | No | Array of [validation](#validation) rules |
 
 #### Select
 
@@ -381,25 +451,28 @@ Dropdown selection field for choosing one option from a list.
       { "label": "United Kingdom", "value": "uk" }
     ]
   },
-  "default": "us"
+  "defaultValue": "us"
 }
 ```
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "field" |
-| `fieldType` | string | Yes | Must be "select" |
-| `id` | string | Yes | Unique identifier for the field |
-| `title` | string | Yes | Label displayed for the field |
-| `propertyPath` | string | Yes | Path to the property in the form data |
-| `placeholder` | string | No | Placeholder text |
-| `helperText` | string | No | Help text displayed below the field |
-| `multiple` | boolean | No | When true, allows multiple selections |
+| `type` | `string` | Yes | Must be "field" |
+| `fieldType` | `string` | Yes | Must be "select" |
+| `id` | `string` | Yes | Unique identifier for the field |
+| `title` | `string` | Yes | Label displayed for the field |
+| `propertyPath` | `string` | Yes | Path to the property in the form data |
+| `placeholder` | `string` | No | Placeholder text |
+| `helperText` | `string` | No | Help text displayed below the field |
+| `multiple` | `boolean` | No | When true, allows multiple selections |
 | `options` | object | Yes | Configuration for select options |
-| `options.type` | string | Yes | Type of options source (e.g., "static") |
-| `options.items` | array | Yes | Array of option items with label and value |
-| `default` | string | No | Default selected value |
-| `validations` | array | No | Array of option supported validation rules |
+| `options.type` | `string` | Yes | Type of options source (e.g., "static") |
+| `options.items` | [Option Item](#option-item)[] | Yes | Array of option items with label and value |
+| `default` | `string` | No | Default selected value |
+| `required` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is required |
+| `hide` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is hidden |
+| `disable` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is disabled |
+| `validations` | [Validations](#validation)[] | No | Array of [validation](#validation) rules |
 
 #### Radio
 
@@ -426,17 +499,20 @@ Radio button group for selecting one option from a list.
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "field" |
-| `fieldType` | string | Yes | Must be "radio" |
-| `id` | string | Yes | Unique identifier for the field |
-| `title` | string | Yes | Label displayed for the field |
-| `propertyPath` | string | Yes | Path to the property in the form data |
-| `helperText` | string | No | Help text displayed below the field |
+| `type` | `string` | Yes | Must be "field" |
+| `fieldType` | `string` | Yes | Must be "radio" |
+| `id` | `string` | Yes | Unique identifier for the field |
+| `title` | `string` | Yes | Label displayed for the field |
+| `propertyPath` | `string` | Yes | Path to the property in the form data |
+| `helperText` | `string` | No | Help text displayed below the field |
 | `options` | object | Yes | Configuration for radio options |
-| `options.type` | string | Yes | Type of options source (e.g., "static") |
-| `options.items` | array | Yes | Array of option items with label and value |
-| `default` | string | No | Default selected value |
-| `validations` | array | No | Array of radio supported validation rules |
+| `options.type` | `string` | Yes | Type of options source (e.g., "static") |
+| `options.items` | [Option Item](#option-item)[] | Yes | Array of option items with label and value |
+| `defaultValue` | `string` | No | Default selected value |
+| `required` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is required |
+| `hide` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is hidden |
+| `disable` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is disabled |
+| `validations` | [Validations](#validation)[] | No | Array of [validation](#validation) rules |
 
 #### Checkbox
 
@@ -464,17 +540,20 @@ Multiple-selection checkbox group.
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "field" |
-| `fieldType` | string | Yes | Must be "checkbox" |
-| `id` | string | Yes | Unique identifier for the field |
-| `title` | string | Yes | Label displayed for the field |
-| `propertyPath` | string | Yes | Path to the property in the form data |
-| `helperText` | string | No | Help text displayed below the field |
+| `type` | `string` | Yes | Must be "field" |
+| `fieldType` | `string` | Yes | Must be "checkbox" |
+| `id` | `string` | Yes | Unique identifier for the field |
+| `title` | `string` | Yes | Label displayed for the field |
+| `propertyPath` | `string` | Yes | Path to the property in the form data |
+| `helperText` | `string` | No | Help text displayed below the field |
 | `options` | object | Yes | Configuration for checkbox options |
-| `options.type` | string | Yes | Type of options source (e.g., "static") |
-| `options.items` | array | Yes | Array of option items with label and value |
-| `default` | string | No | Default selected value |
-| `validations` | array | No | Array of checkbox supported validation rules |
+| `options.type` | `string` | Yes | Type of options source (e.g., "static") |
+| `options.items` | [Option Item](#option-item)[] | Yes | Array of option items with label and value |
+| `defaultValue` | string[] | No | Default selected values |
+| `required` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is required |
+| `hide` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is hidden |
+| `disable` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is disabled |
+| `validations` | [Validations](#validation)[] | No | Array of [validation](#validation) rules |
 
 #### Date
 
@@ -495,17 +574,48 @@ Date picker field.
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "field" |
-| `fieldType` | string | Yes | Must be "date" |
-| `id` | string | Yes | Unique identifier for the field |
-| `title` | string | Yes | Label displayed for the field |
-| `propertyPath` | string | Yes | Path to the property in the form data |
-| `helperText` | string | No | Help text displayed below the field |
-| `max` | string | No | Maximum date allowed |
-| `min` | string | No | Minimum date allowed |
-| `onlyFuture` | boolean | No | When true, only future dates are allowed |
-| `onlyPast` | boolean | No | When true, only past dates are allowed |
-| `validations` | array | No | Array of date validation rules |
+| `type` | `string` | Yes | Must be "field" |
+| `fieldType` | `string` | Yes | Must be "date" |
+| `id` | `string` | Yes | Unique identifier for the field |
+| `title` | `string` | Yes | Label displayed for the field |
+| `propertyPath` | `string` | Yes | Path to the property in the form data |
+| `helperText` | `string` | No | Help text displayed below the field |
+| `max` | `string` | No | Maximum date allowed |
+| `min` | `string` | No | Minimum date allowed |
+| `onlyFuture` | `boolean` | No | When true, only future dates are allowed |
+| `onlyPast` | `boolean` | No | When true, only past dates are allowed |
+| `required` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is required |
+| `hide` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is hidden |
+| `disable` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is disabled |
+| `validations` | [Validations](#validation)[] | No | Array of [validation](#validation) rules |
+
+#### Time
+
+Time picker field for selecting time values only.
+
+```json
+{
+  "type": "field",
+  "fieldType": "time",
+  "id": "appointmentTime",
+  "title": "Appointment Time",
+  "propertyPath": "appointmentTime",
+  "helperText": "Select your preferred time"
+}
+```
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `type` | `string` | Yes | Must be "field" |
+| `fieldType` | `string` | Yes | Must be "time" |
+| `id` | `string` | Yes | Unique identifier for the field |
+| `title` | `string` | Yes | Label displayed for the field |
+| `propertyPath` | `string` | Yes | Path to the property in the form data |
+| `helperText` | `string` | No | Help text displayed below the field |
+| `required` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is required |
+| `hide` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is hidden |
+| `disable` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is disabled |
+| `validations` | [Validations](#validation)[] | No | Array of [validation](#validation) rules |
 
 #### DateTime
 
@@ -515,9 +625,10 @@ Date and time picker field.
 {
   "type": "field",
   "fieldType": "datetime",
-  "id": "appointmentTime",
-  "title": "Appointment Time",
-  "propertyPath": "appointmentTime",
+  "id": "appointmentDateTime",
+  "title": "Appointment Date & Time",
+  "propertyPath": "appointmentDateTime",
+  "onlyFuture": true,
   "validations": [
     // ...date time validations
   ]
@@ -526,17 +637,49 @@ Date and time picker field.
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "field" |
-| `fieldType` | string | Yes | Must be "datetime" |
-| `id` | string | Yes | Unique identifier for the field |
-| `title` | string | Yes | Label displayed for the field |
-| `propertyPath` | string | Yes | Path to the property in the form data |
-| `helperText` | string | No | Help text displayed below the field |
-| `max` | string | No | Maximum date and time allowed (UTC) |
-| `min` | string | No | Minimum date and time allowed (UTC) |
-| `onlyFuture` | boolean | No | When true, only future date-times are allowed |
-| `onlyPast` | boolean | No | When true, only past date-times are allowed |
-| `validations` | array | No | Array of date time validation rules |
+| `type` | `string` | Yes | Must be "field" |
+| `fieldType` | `string` | Yes | Must be "datetime" |
+| `id` | `string` | Yes | Unique identifier for the field |
+| `title` | `string` | Yes | Label displayed for the field |
+| `propertyPath` | `string` | Yes | Path to the property in the form data |
+| `helperText` | `string` | No | Help text displayed below the field |
+| `max` | `string` | No | Maximum date and time allowed (UTC) |
+| `min` | `string` | No | Minimum date and time allowed (UTC) |
+| `onlyFuture` | `boolean` | No | When true, only future date-times are allowed |
+| `onlyPast` | `boolean` | No | When true, only past date-times are allowed |
+| `required` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is required |
+| `hide` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is hidden |
+| `disable` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is disabled |
+| `validations` | [Validations](#validation)[] | No | Array of [validation](#validation) rules |
+
+#### Radio Binary
+
+A binary radio field for simple yes/no questions with boolean values.
+
+```json
+{
+  "type": "field",
+  "fieldType": "radio-binary",
+  "id": "isPep",
+  "title": "Are you a Politically Exposed Person (PEP)?",
+  "propertyPath": "isPep",
+  "defaultValue": false
+}
+```
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `type` | `string` | Yes | Must be "field" |
+| `fieldType` | `string` | Yes | Must be "radio-binary" |
+| `id` | `string` | Yes | Unique identifier for the field |
+| `title` | `string` | Yes | Label displayed for the field |
+| `propertyPath` | `string` | Yes | Path to the property in the form data |
+| `helperText` | `string` | No | Help text displayed below the field |
+| `defaultValue` | `boolean` | No | Default boolean value |
+| `required` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is required |
+| `hide` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is hidden |
+| `disable` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is disabled |
+| `validations` | [Validations](#validation)[] | No | Array of [validation](#validation) rules |
 
 #### Switch
 
@@ -562,17 +705,20 @@ Toggle switch for boolean values.
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "field" |
-| `fieldType` | string | Yes | Must be "switch" |
-| `id` | string | Yes | Unique identifier for the field |
-| `title` | string | Yes | Label displayed for the field |
-| `propertyPath` | string | Yes | Path to the property in the form data |
-| `helperText` | string | No | Help text displayed below the field |
+| `type` | `string` | Yes | Must be "field" |
+| `fieldType` | `string` | Yes | Must be "switch" |
+| `id` | `string` | Yes | Unique identifier for the field |
+| `title` | `string` | Yes | Label displayed for the field |
+| `propertyPath` | `string` | Yes | Path to the property in the form data |
+| `helperText` | `string` | No | Help text displayed below the field |
 | `options` | object | Yes | Configuration for switch options |
-| `options.type` | string | Yes | Type of options source (e.g., "static") |
-| `options.items` | array | Yes | Array of option items with label and value |
-| `default` | string | No | Default switch state value |
-| `validations` | array | No | Array of switch supported validation rules |
+| `options.type` | `string` | Yes | Type of options source (e.g., "static") |
+| `options.items` | [Option Item](#option-item)[] | Yes | Array of option items with label and value |
+| `defaultValue` | `string` | No | Default switch state value |
+| `required` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is required |
+| `hide` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is hidden |
+| `disable` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is disabled |
+| `validations` | [Validations](#validation)[] | No | Array of [validation](#validation) rules |
 
 #### File Upload
 
@@ -605,18 +751,21 @@ File upload field for document or image uploads.
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | Yes | Must be "field" |
-| `fieldType` | string | Yes | Must be "file-upload" |
-| `id` | string | Yes | Unique identifier for the field |
-| `title` | string | Yes | Label displayed for the field |
-| `propertyPath` | string | Yes | Path to the property in the form data |
-| `helperText` | string | No | Help text displayed below the field |
+| `type` | `string` | Yes | Must be "field" |
+| `fieldType` | `string` | Yes | Must be "file-upload" |
+| `id` | `string` | Yes | Unique identifier for the field |
+| `title` | `string` | Yes | Label displayed for the field |
+| `propertyPath` | `string` | Yes | Path to the property in the form data |
+| `helperText` | `string` | No | Help text displayed below the field |
 | `accept` | array | No | Array of accepted MIME types or file extensions |
 | `maxSize` | object | No | Maximum file size configuration |
-| `maxSize.value` | number | Yes | Size value (if maxSize is provided) |
-| `maxSize.unit` | string | Yes | Size unit: "bytes", "KB", "MB", or "GB" (if maxSize is provided) |
-| `multiple` | boolean | No | When true, allows multiple file uploads |
-| `validations` | array | No | Array of file validation rules |
+| `maxSize.value` | `number` | Yes | Size value (if maxSize is provided) |
+| `maxSize.unit` | `string` | Yes | Size unit: "B", "KB", "MB", or "GB" (if maxSize is provided) |
+| `multiple` | `boolean` | No | When true, allows multiple file uploads |
+| `required` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is required |
+| `hide` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is hidden |
+| `disable` | `boolean` \| [Condition](#conditions) | No | When true or condition is met, field is disabled |
+| `validations` | [Validations](#validation)[] | No | Array of [validation](#validation) rules |
 
 ## Validation
 
@@ -764,31 +913,99 @@ Validations define rules that input values must satisfy. Different field types s
 
 Conditions allow you to create dynamic behaviors based on form values. They can be used to:
 
-- Show/hide fields
-- Make fields required or optional
-- Disable/enable fields
+- Show/hide fields conditionally
+- Make fields required or optional based on other field values
+- Disable/enable fields dynamically
+- Control form flow and validation logic
 
-Conditions use a tuple format: `[leftOperand, rightOperand, operator]`
+### Single Condition
+
+A single condition can be either rule-based or function-based:
+
+#### Rule-based Condition
+
+Rule-based conditions use a tuple format: `[leftOperand, rightOperand, operator]`
+
+- **Left Operand**: Can be a string, number, or boolean value (often a field reference like `"{{fieldName}}"`)
+- **Right Operand**: Can be a string, number, boolean, or arrays of these types
+- **Operator**: Comparison operator (see [Operators](#operators) section)
 
 ```json
-// Basic condition: age > 18
-["age", "18", "GT"]
+// Basic condition: age greater than 18
+["{{person.age}}", 18, "GT"]
 
 // Reference another field's value
-["password", "{{confirmPassword}}", "EQ"]
+["{{firstName}}", "{{lastName}}", "EQ"]
 
-// Check if value is in a list
-["country", "US,CA,UK", "IN"]
+// Check against multiple values (array)
+["{{country}}", ["US", "CA", "UK"], "IN"]
 
-// Check if field is empty
-["comments", "", "EMP"]
+// Self-reference condition (empty property path uses current field)
+["", "active", "EQ"]
+
+// Boolean comparison
+[true, "{{isActive}}", "EQ"]
 ```
 
-You can also use function-based conditions for more complex logic:
+#### Function-based Condition
+
+Function-based conditions allow for complex custom logic:
 
 ```json
 {
-  "functionId": "isValidAddress"
+  "functionId": "isUserLoggedIn"
+}
+```
+
+```json
+{
+  "functionId": "validateComplexBusinessRule"
+}
+```
+
+### Multiple Conditions (AND/OR Logic)
+
+For complex scenarios, you can combine multiple conditions using logical operators:
+
+```json
+{
+  "type": "AND",
+  "conditions": [
+    ["{{age}}", 18, "GT"],
+    ["{{country}}", "USA", "EQ"]
+  ]
+}
+```
+
+```json
+{
+  "type": "OR",
+  "conditions": [
+    ["{{subscription}}", "premium", "EQ"],
+    ["{{referralCode}}", "", "NEQ"]
+  ]
+}
+```
+
+#### Condition Combination Properties
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `type` | `"AND"` \| `"OR"` | No | Logical operator (defaults to `"AND"`) |
+| `conditions` | [Condition](#conditions)[] | Yes | Array of conditions to evaluate |
+
+#### Complex Nested Example
+
+```json
+{
+  "type": "OR",
+  "conditions": [
+    ["{{userType}}", "premium", "EQ"],
+    {
+      "functionId": "hasSpecialAccess"
+    },
+    ["{{isAdmin}}", true, "EQ"]
+  ]
 }
 ```
 
@@ -798,22 +1015,38 @@ Operators define the comparison logic used in conditions:
 
 | Operator | Description | Example |
 |----------|-------------|---------|
-| `EQ` | Equal to | `["status", "active", "EQ"]` |
-| `N_EQ` | Not equal to | `["status", "inactive", "N_EQ"]` |
-| `IN` | Value is in a list | `["country", "US,CA,UK", "IN"]` |
-| `N_IN` | Value is not in a list | `["country", "CN,RU", "N_IN"]` |
-| `GT` | Greater than | `["age", "18", "GT"]` |
-| `GTE` | Greater than or equal to | `["score", "60", "GTE"]` |
-| `LT` | Less than | `["price", "100", "LT"]` |
-| `LTE` | Less than or equal to | `["quantity", "10", "LTE"]` |
-| `EMP` | Is empty | `["comments", "", "EMP"]` |
-| `N_EMP` | Is not empty | `["email", "", "N_EMP"]` |
-| `BTW` | Between (inclusive) | `["age", "18,65", "BTW"]` |
-| `HAS` | Contains (substring match) | `["description", "urgent", "HAS"]` |
+| `EQ` | Equal to | `["{{status}}", "active", "EQ"]` |
+| `N_EQ` | Not equal to | `["{{status}}", "inactive", "N_EQ"]` |
+| `IN` | Value is in a list | `["{{country}}", ["US", "CA", "UK"], "IN"]` |
+| `N_IN` | Value is not in a list | `["{{country}}", ["CN", "RU"], "N_IN"]` |
+| `GT` | Greater than | `["{{age}}", 18, "GT"]` |
+| `GTE` | Greater than or equal to | `["{{score}}", 60, "GTE"]` |
+| `LT` | Less than | `["{{price}}", 100, "LT"]` |
+| `LTE` | Less than or equal to | `["{{quantity}}", 10, "LTE"]` |
+| `EMP` | Is empty | `["{{comments}}", "", "EMP"]` |
+| `N_EMP` | Is not empty | `["{{email}}", "", "N_EMP"]` |
+| `BTW` | Between (inclusive) | `["{{age}}", [18, 65], "BTW"]` |
+| `HAS` | Contains (substring match) | `["{{description}}", "urgent", "HAS"]` |
 
 ## Options
 
 Options provide the available choices for select, radio, and checkbox fields.
+
+### Option Item
+
+Each option item follows this structure:
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `label` | `string` | Yes | Display text shown to the user |
+| `value` | `string` \| `number` \| `boolean` | Yes | Actual value stored when selected |
+
+```json
+{
+  "label": "Display Text",
+  "value": "stored_value"
+}
+```
 
 ### Static Options
 
@@ -828,9 +1061,17 @@ Options defined directly in the schema:
     { "label": "Non-binary", "value": "non-binary" },
     { "label": "Prefer not to say", "value": "not-specified" }
   ],
-  "default": "not-specified"
+  "defaultValue": "not-specified"
 }
 ```
+
+#### Static Options Properties
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `type` | "static" | Yes | Specifies that options are defined inline |
+| `items` | [Option Item](#option-item)[] | Yes | Array of option items |
+| `defaultValue` | string | No | Default selected value |
 
 ### Dynamic Options
 
@@ -852,6 +1093,16 @@ For dependent dropdowns, you can reference other field values in the URL:
   "url": "https://api.example.com/states?country=${country}"
 }
 ```
+
+#### Dynamic Options Properties
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `type` | "dynamic" | Yes | Specifies that options are loaded from API |
+| `url` | string | Yes | API endpoint URL to fetch options |
+| `processor` | string | No | Custom function ID to process API response into [Option Items](#option-item)[] |
+
+> **Note**: The API response should return an array of [Option Items](#option-item)[], or if using a `processor`, the processor function should transform the response into the required format.
 
 ## Complete Form Example
 
@@ -1702,4 +1953,4 @@ Here's a complete example of a multi-step form for collecting customer informati
 }
 ```
 
-This documentation provides a comprehensive guide to creating form schemas for the conf forms feature. For specific implementations or more complex use cases, please contact the development team.
+This documentation provides a comprehensive guide to creating form schemas for the **Forge Froms**. For specific implementations or more complex use cases, please contact the development team.

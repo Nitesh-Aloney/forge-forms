@@ -1,7 +1,7 @@
 import { Box, Link, Typography } from '@mui/material';
 import { Component, type ErrorInfo, type PropsWithChildren } from 'react';
-import ConfFormsWebError from '@/schemas/errors/ConfFormsWebError';
 import type { TErrorResponse } from '@/schemas/errors/error-response';
+import FormsForgeWebError from '@/schemas/errors/ForgeFormsWebError';
 import ResponseError from '@/schemas/errors/ResponseError';
 import { StatusCode } from '@/schemas/http/StatusCode';
 import Error403 from './Error403';
@@ -64,13 +64,13 @@ class ErrorBoundary extends Component<PropsWithChildren, ErrorBoundaryState> {
     const now = Date.now();
     const { retryCount, lastRetryTime } = this.state;
 
-    // Check if we're within the cooldown period
     if (lastRetryTime && now - lastRetryTime < RETRY_COOLDOWN) {
+      // Check if we're within the cooldown period
       return; // Still in cooldown
     }
 
-    // Check if we've exceeded max retries
     if (retryCount >= MAX_RETRIES) {
+      // Check if we've exceeded max retries
       return; // Max retries exceeded
     }
 
@@ -81,7 +81,7 @@ class ErrorBoundary extends Component<PropsWithChildren, ErrorBoundaryState> {
       retryCount: prevState.retryCount + 1,
     }));
 
-    if (this.state.error instanceof ConfFormsWebError && this.state.error.retry) {
+    if (this.state.error instanceof FormsForgeWebError && this.state.error.retry) {
       this.state.error.retry?.();
     }
   };
@@ -99,7 +99,7 @@ class ErrorBoundary extends Component<PropsWithChildren, ErrorBoundaryState> {
     }
 
     if (hasError) {
-      const canRetry = this.state.error instanceof ConfFormsWebError && this.state.error.retry && retryCount < MAX_RETRIES;
+      const canRetry = this.state.error instanceof FormsForgeWebError && this.state.error.retry && retryCount < MAX_RETRIES;
 
       return (
         <Box data-test="error-view" sx={{ height: '100%', p: '3rem 2rem', width: '100%' }}>
@@ -114,7 +114,7 @@ class ErrorBoundary extends Component<PropsWithChildren, ErrorBoundaryState> {
           >
             <Box alt="error" component="img" src="/images/error.svg" />
             <Typography fontWeight={600} variant="body1">
-              {this.state.error instanceof ConfFormsWebError && this.state.error?.message
+              {this.state.error instanceof FormsForgeWebError && this.state.error?.message
                 ? this.state.error?.message
                 : 'An unexpected error occurred'}
               {canRetry && (

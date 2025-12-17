@@ -1,9 +1,9 @@
-import type { TConfFormsWebErrorProps } from './ConfFormsWebError';
-import ConfFormsWebError from './ConfFormsWebError';
+import type { TForgeFormsWebErrorProps } from './ForgeFormsWebError';
+import ForgeFormsWebError from './ForgeFormsWebError';
 
-export type ResponseErrorProps = TConfFormsWebErrorProps & { status?: number };
+export type ResponseErrorProps = TForgeFormsWebErrorProps & { status?: number };
 
-class ResponseError extends ConfFormsWebError {
+class ResponseError extends ForgeFormsWebError {
   status?: number;
 
   constructor({ status, ...rest }: ResponseErrorProps) {
